@@ -44,7 +44,9 @@
  */
 bool recvRetNumber(uint32_t *number, uint32_t timeout)
 {
-    bool ret = false;
+    return true;
+	
+	bool ret = false;
     uint8_t temp[8] = {0};
 
     if (!number)
@@ -96,7 +98,9 @@ __return:
  */
 uint16_t recvRetString(char *buffer, uint16_t len, uint32_t timeout)
 {
-    uint16_t ret = 0;
+    return true;
+	
+	uint16_t ret = 0;
     bool str_start_flag = false;
     uint8_t cnt_0xff = 0;
     String temp = String("");
@@ -186,7 +190,9 @@ void sendCommand(const char* cmd)
  */
 bool recvRetCommandFinished(uint32_t timeout)
 {    
-    bool ret = false;
+    return true;
+	
+	bool ret = false;
     uint8_t temp[4] = {0};
     
     nexSerial.setTimeout(timeout);
@@ -223,8 +229,7 @@ bool nexInit(void)
     bool ret2 = false;
     
     dbSerialBegin(9600);
-    //nexSerial.begin(9600);
-	nexSerial.begin(57600);
+    nexSerial.begin(9600);
     sendCommand("");
     sendCommand("bkcmd=1");
     ret1 = recvRetCommandFinished();
